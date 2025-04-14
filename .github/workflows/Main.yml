@@ -26,4 +26,4 @@ jobs:
       run: |
         cd izazsarbudeen.github.io
         # run your build or deploy script here
-        ./deploy.sh  # Or npm run build, or whatever applies
+        .github/workflows/jekyll-docker.yml # Or npm run build, or whatever applies
