@@ -2,7 +2,7 @@ name: Deploy Jekyll Site from Private Repo
 
 on:
   push:
-    branches: [main]  # Or whichever branch triggers deploy
+    branches: [main]  # Or whichever branch trigg ers deploy
 
 jobs:
   deploy:
