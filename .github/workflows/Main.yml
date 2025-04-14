@@ -1,0 +1,24 @@
+name: Deploy with Private Repo
+
+on:
+  push:
+    branches: [main]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout this (public) repo
+      uses: actions/checkout@v3
+
+    - name: Clone private repo
+      env:
+        TOKEN: ${{ secrets.PRIVATE_REPO_TOKEN }}
+      run: |
+        git clone https://$TOKEN@github.com/username/private-repo.git
+
+    - name: Run Deployment Script
+      run: |
+        cd private-repo
+        ./deploy.sh  # Or whatever your deployment script is
