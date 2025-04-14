@@ -16,7 +16,7 @@ jobs:
       env:
         TOKEN: ${{ secrets.PRIVATE_REPO_TOKEN }}
       run: |
-        git clone https://$TOKEN@github.com/username/private-repo.git
+        git clone https://$TOKEN@github.com/izazsarbudeen/izazsarbudeen.github.io.git
 
     - name: Run Deployment Script
       run: |
