@@ -20,5 +20,5 @@ jobs:
 
     - name: Run Deployment Script
       run: |
-        cd Izazsarbudeen/izazsarbudeen.github.io
+        cd Izazsarbudeen/izazsarbudeen.github.io@main
         ./deploy.sh  # Or whatever your deployment script is
