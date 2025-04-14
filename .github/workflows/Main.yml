@@ -1,29 +1,45 @@
-name: Deploy Using Private Repo
+name: Deploy Jekyll Site from Private Repo
 
 on:
   push:
-    branches: [main]  # or any branch you want
+    branches: [main]  # Or whichever branch triggers deploy
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout current (public) repo
+    - name: Checkout public repo
       uses: actions/checkout@v3
 
-    - name: Clone private repo using PAT
+    - name: Clone private Jekyll repo
       env:
         TOKEN: ${{ secrets.PRIVATE_REPO_TOKEN }}
       run: |
-        git clone https://$TOKEN@github.com/izazsarbudeen/izazsarbudeen.github.io.git
+        git clone https://$TOKEN@github.com/izazsarbudeen/izazsarbudeen.github.io.git jekyll-site
+        ls -la jekyll-site
 
-    - name: List private repo contents
-      run: |
-        ls -la izazsarbudeen.github.io
+    - name: Setup Ruby
+      uses: ruby/setup-ruby@v1
+      with:
+        ruby-version: 3.1  # or any version supported by your Jekyll site
+        bundler-cache: true
 
-    - name: Deploy or Build
+    - name: Install Jekyll & Build site
+      working-directory: jekyll-site
       run: |
-        cd izazsarbudeen.github.io
-        # run your build or deploy script here
-        .github/workflows/jekyll-docker.yml # Or npm run build, or whatever applies
+        gem install bundler
+        bundle install
+        bundle exec jekyll build -d ../public-site
+
+    - name: Deploy (example: push to gh-pages branch)
+      run: |
+        cd public-site
+        git init
+        git config user.name "GitHub Actions"
+        git config user.email "actions@github.com"
+        git remote add origin https://x-access-token:${{ secrets.PRIVATE_REPO_TOKEN }}@github.com/izazsarbudeen/test.github.io.git
+        git checkout -b gh-pages
+        git add .
+        git commit -m "Deploy Jekyll site from private repo 🚀"
+        git push --force origin gh-pages
