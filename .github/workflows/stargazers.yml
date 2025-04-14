@@ -1,4 +1,4 @@
-name: izazsarbudeen
+name: izazsarbudeen1
 
 on:
   watch:
@@ -8,4 +8,4 @@ jobs:
   stargazers:
     runs-on: ubuntu-latest
     steps:
-      - uses: izazsarbudeen/izazsarbudeen.github.io@main
+      - uses: izazsarbudeen/izazsarbudeen1@main
