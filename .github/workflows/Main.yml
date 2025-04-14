@@ -12,7 +12,7 @@ jobs:
     - name: Checkout this (public) repo
       uses: actions/checkout@v3
 
-    - name: Clone private repo
+    - name: Clone izazsarbudeen.github.io
       env:
         TOKEN: ${{ secrets.PRIVATE_REPO_TOKEN }}
       run: |
