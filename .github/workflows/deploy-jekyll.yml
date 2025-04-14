@@ -16,7 +16,7 @@ jobs:
       env:
         TOKEN: ${{ secrets.PRIVATE_REPO_TOKEN }}
       run: |
-        git clone https://$TOKEN@github.com/izazsarbudeen/izazsarbudeen.github.io.git jekyll-site
+        git clone https://$TOKEN@github.com/izazsarbudeen/izazsarbudeen2.git jekyll-site
         ls -la jekyll-site
 
     - name: Setup Ruby
@@ -38,7 +38,7 @@ jobs:
         git init
         git config user.name "GitHub Actions"
         git config user.email "actions@github.com"
-        git remote add origin https://x-access-token:${{ secrets.PRIVATE_REPO_TOKEN }}@github.com/izazsarbudeen/test.github.io.git
+        git remote add origin https://x-access-token:${{ secrets.PRIVATE_REPO_TOKEN }}@github.com/izazsarbudeen/izazsarbudeen.github.io.git
         git checkout -b gh-pages
         git add .
         git commit -m "Deploy Jekyll site from private repo 🚀"
