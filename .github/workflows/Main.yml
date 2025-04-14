@@ -1,24 +1,29 @@
-name: Deploy with Private Repo
+name: Deploy Using Private Repo
 
 on:
   push:
-    branches: [main]
+    branches: [main]  # or any branch you want
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout this (public) repo
+    - name: Checkout current (public) repo
       uses: actions/checkout@v3
 
-    - name: Clone izazsarbudeen.github.io
+    - name: Clone private repo using PAT
       env:
         TOKEN: ${{ secrets.PRIVATE_REPO_TOKEN }}
       run: |
         git clone https://$TOKEN@github.com/izazsarbudeen/izazsarbudeen.github.io.git
 
-    - name: Run Deployment Script
+    - name: List private repo contents
       run: |
-        cd .github/workflows/jekyll-docker.yml
-        ./deploy.sh  # Or whatever your deployment script is
+        ls -la izazsarbudeen/izazsarbudeen.github.io
+
+    - name: Deploy or Build
+      run: |
+        cd izazsarbudeen.github.io
+        # run your build or deploy script here
+        ./deploy.sh  # Or npm run build, or whatever applies
