@@ -20,7 +20,7 @@ jobs:
 
     - name: List private repo contents
       run: |
-        ls -la izazsarbudeen/izazsarbudeen.github.io
+        ls -la izazsarbudeen.github.io
 
     - name: Deploy or Build
       run: |
