@@ -20,5 +20,5 @@ jobs:
 
     - name: Run Deployment Script
       run: |
-        cd jekyll-docker.yml
+        cd .github/workflows/jekyll-docker.yml
         ./deploy.sh  # Or whatever your deployment script is
